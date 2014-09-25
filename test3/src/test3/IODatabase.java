@@ -16,7 +16,9 @@ public class IODatabase implements InputOutput {
 	private static List<Account> accs = storage.getAccs();
 	private Statement st;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.valentyn_tymku.bank.InputOutput#read()
 	 */
 	public void read() throws IOException {
@@ -51,10 +53,11 @@ public class IODatabase implements InputOutput {
 			e.printStackTrace();
 		}
 
-
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.valentyn_tymku.bank.InputOutput#write()
 	 */
 	public void write() throws IOException {

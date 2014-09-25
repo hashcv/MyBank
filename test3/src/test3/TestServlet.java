@@ -38,9 +38,8 @@ public class TestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-	
 		String readMethod = request.getParameter("readMethod");
-		if (readMethod!=null && readMethod.length() > 0) {
+		if (readMethod != null && readMethod.length() > 0) {
 			custs.clear();
 
 			switch (readMethod) {
@@ -62,7 +61,7 @@ public class TestServlet extends HttpServlet {
 			request.getRequestDispatcher("/servletWelcome.jsp").forward(
 					request, response);
 		}
-//****************************************************************************
+		// ****************************************************************************
 		String writeMethod = request.getParameter("writeMethod");
 		if (writeMethod != null && writeMethod.length() > 0) {
 			switch (writeMethod) {
@@ -81,6 +80,7 @@ public class TestServlet extends HttpServlet {
 			output.write();
 
 		}
+		
 
 	}
 

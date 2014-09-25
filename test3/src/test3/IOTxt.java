@@ -19,25 +19,27 @@ public class IOTxt implements InputOutput {
 	private static List<Customer> custs = storage.getCusts();
 	private static List<Account> accs = storage.getAccs();
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.valentyn_tymku.bank.InputOutput#read()
 	 */
 	public void read() throws IOException {
-		
-		
-				
-		File dest1 = new File(this.getClass().getClassLoader().getResource("\\").getFile()+"..\\..\\customers.txt");
-		
-		BufferedReader custReader = new BufferedReader(new FileReader(
-				dest1));
+
+		File dest1 = new File(this.getClass().getClassLoader()
+				.getResource("\\").getFile()
+				+ "..\\..\\customers.txt");
+
+		BufferedReader custReader = new BufferedReader(new FileReader(dest1));
 		String str;
 		while ((str = custReader.readLine()) != null) {
 			custs.add(Customer.parseCust(str));
 		}
 
-		File dest2 = new File(this.getClass().getClassLoader().getResource("\\").getFile()+"..\\..\\accounts.txt");
-		BufferedReader accReader = new BufferedReader(new FileReader(
-				dest2));
+		File dest2 = new File(this.getClass().getClassLoader()
+				.getResource("\\").getFile()
+				+ "..\\..\\accounts.txt");
+		BufferedReader accReader = new BufferedReader(new FileReader(dest2));
 
 		while ((str = accReader.readLine()) != null) {
 			accs.add(Account.parseAcc(str));
@@ -48,7 +50,9 @@ public class IOTxt implements InputOutput {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.valentyn_tymku.bank.InputOutput#write()
 	 */
 	public void write() throws IOException {
