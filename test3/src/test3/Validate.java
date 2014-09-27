@@ -1,7 +1,5 @@
 package test3;
 
-//import javax.validation.*;
-
 /**
  * @author hash
  *
@@ -26,12 +24,12 @@ public class Validate {
 	 * @return
 	 */
 	public static boolean isValidIpn(Long ipn) {
-		//if (Long.SIZE == 10)
-		//	return true;
-		//else {
-			//System.out.println("IPN is invalid!");
-			return true;
-		//}
+		 if (String.valueOf(ipn).length() == 10)
+		 return true;
+		 else {
+		 System.out.println("IPN is invalid!");
+		return false;
+		 }
 	}
 
 	/**
@@ -42,8 +40,10 @@ public class Validate {
 		if (phone.matches("^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"))
 			return true;
 		else {
+			if (phone.length()>0)return true;
 			System.out.println("Phone is invalid!");
-			return true;
+			return false;
+		
 		}
 	}
 
@@ -55,8 +55,9 @@ public class Validate {
 		if (address.matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)"))
 			return true;
 		else {
+			if (address.length()>0) return true;
 			System.out.println("Address is invalid!");
-			return true;
+			return false;
 		}
 	}
 
@@ -73,14 +74,4 @@ public class Validate {
 			return false;
 		}
 	}
-
-	/*
-	 * public static boolean isValidCustomer(Customer customer){
-	 * 
-	 * else return false; }
-	 * 
-	 * public static boolean isValidAccount(Account account){
-	 * 
-	 * return true; }
-	 */
 }

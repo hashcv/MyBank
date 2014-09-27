@@ -6,17 +6,18 @@
 <script type="text/javascript" src="view.js"></script>
 </head>
 <body>
-
-	<img id="top" src="images/top.png">
+	<br>
 	<div id="form_container">
-		<form id="form_907175" class="appnitro" method="get"
+		<form id="formEditCustomer" class="appnitro" method="get"
 			action="StorageEditor">
+			<br>
 			<div class="form_description">
 				<h2>Edit customer</h2>
 				<p>You can edit customer there.</p>
+				<p style="color:red">${errorMessage}</p>
+
 			</div>
 			<ul>
-
 				<li><label class="description" for="element_1">Name </label> <span>
 						<input id="firstName" name="firstName" value="${firstName}"
 						class="element text" size="8" /> <label>First</label>

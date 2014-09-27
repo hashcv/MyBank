@@ -4,6 +4,20 @@
 <link rel="stylesheet" type="text/css" href="view.css" media="all">
 <html>
 <head>
+<script type="text/javascript">
+function confirm_decision(){
+    if(confirm("you want to delete the user?"))
+    
+    { 
+     
+       window.location="deleteStaffAction.jsp?userID="; 
+     }else{
+       return false;
+    }
+   return true;
+ }
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MyBank</title>
 </head>
@@ -39,7 +53,7 @@
 
 					<td><a href="StorageEditor?action=edit&instance=customer&ipn=${ipn}"><img
 							src="images/edit.ico" height=24 width=24></a></td>
-					<td><a href="StorageEditor?action=delete&instance=customer&ipn=${ipn}"><img
+					<td><a href="StorageEditor?action=delete&instance=customer&ipn=${ipn}" onclick="return confirm('NOOOOOOOOO!!!! Are you sure you want to delete customer with IPN ${ipn}?');"><img
 							src="images/delete.ico" height=24 width=24></a></td>
 				</tr>
 			</c:forEach>
