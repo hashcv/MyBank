@@ -13,11 +13,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Storage")
 public class Storage {
 	private static Storage instance;
-	@XmlElement (name="Customer")
+	@XmlElement(name = "Customer")
 	public static List<Customer> custs = new ArrayList<Customer>();
-	@XmlElement (name="Account")
+	@XmlElement(name = "Account")
 	public static List<Account> accs = new ArrayList<Account>();
-	
+
 	/**
 	 * @return the custs
 	 */
@@ -33,9 +33,9 @@ public class Storage {
 	}
 
 	private Storage() {
-		
+
 	}
-	
+
 	public static Storage getInstance() {
 		if (instance == null)
 			instance = new Storage();
@@ -52,7 +52,26 @@ public class Storage {
 				return cust;
 
 		}
-		System.out.println("Not found customer with ipn "+ipn);
+		System.out.println("Not found customer with ipn " + ipn);
+		return null;
+	}
+
+	public static Integer findCustomerIndex(Long ipn) {
+		for (Customer cust : custs) {
+			if (cust.getIpn().equals(ipn)) {
+				return custs.indexOf(cust);
+			}
+		}
+		System.out.println("Not found customer with ipn " + ipn);
+		return null;
+	}
+
+	public static Integer findAccountIndex(Long number) {
+		for (Account acc : accs) {
+			if (acc.getNumber().equals(number))
+				return (Integer) accs.indexOf(acc);
+		}
+		System.out.println("Not found customer with number " + number);
 		return null;
 	}
 

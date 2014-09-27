@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class TestServlet
+ * Servlet implementation class IOServlet
  */
-@WebServlet("/TestServlet")
-public class TestServlet extends HttpServlet {
+@WebServlet("/IOServlet")
+public class IOServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Storage storage = Storage.getInstance();
 	private static List<Customer> custs = storage.getCusts();
@@ -26,7 +26,7 @@ public class TestServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public TestServlet() {
+	public IOServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -57,8 +57,9 @@ public class TestServlet extends HttpServlet {
 			}
 			input.read();
 
-			request.setAttribute("list", custs);
-			request.getRequestDispatcher("/servletWelcome.jsp").forward(
+			request.setAttribute("customers", Storage.getCusts());
+			request.setAttribute("accounts", Storage.getAccs());
+			request.getRequestDispatcher("/customers.jsp").forward(
 					request, response);
 		}
 		// ****************************************************************************
@@ -78,6 +79,11 @@ public class TestServlet extends HttpServlet {
 				output = new IODatabase();
 			}
 			output.write();
+			
+			request.setAttribute("customers", Storage.getCusts());
+			request.setAttribute("accounts", Storage.getAccs());
+			request.getRequestDispatcher("/customers.jsp").forward(
+					request, response);
 
 		}
 		

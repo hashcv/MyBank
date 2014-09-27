@@ -31,9 +31,8 @@ public class IOXml  implements InputOutput {
 		try {
 			File fileInputXML = new File(this.getClass().getClassLoader().getResource("\\").getFile()+"..\\..\\"+settings.getInputXml());
 			Storage stor = (Storage) unmarshalIt(Storage.class, fileInputXML);
-			stor.printAll();
+
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -66,7 +65,6 @@ public class IOXml  implements InputOutput {
 			File fileOutputXML = new File(this.getClass().getClassLoader().getResource("\\").getFile()+"..\\..\\"+settings.getOutputXml());
 			marshalIt(storage, fileOutputXML);
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -101,25 +99,15 @@ public class IOXml  implements InputOutput {
 		 
 		JAXBContext jaxbContext = JAXBContext.newInstance(objectName.getClass());
 		Marshaller marshaller = jaxbContext.createMarshaller();
- 
-		// For Pretty printing output
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
- 
-		
-		marshaller.marshal(objectName, fileOutputXML);
- 
-		//return writer.toString();
- 
-	}
+ 		marshaller.marshal(objectName, fileOutputXML);
+ 	}
  
 	public static Object unmarshalIt(Class<?> className, File inputFile) throws JAXBException {
  
 		JAXBContext jaxbContext = JAXBContext.newInstance(className);
- 
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
- 
-		return unmarshaller.unmarshal(inputFile);
- 
-	}
+ 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+ 		return unmarshaller.unmarshal(inputFile);
+ 	}
 
 }

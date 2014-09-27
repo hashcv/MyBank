@@ -1,7 +1,5 @@
 package test3;
 
-import java.util.Arrays;
-
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -14,12 +12,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 public class Account {
 
-	private long number;
+	private Long number;
 	private String name;
 	private Currencies currency;
 	private double debit;
 	private double creditLimit;
-	// private long customerIpn;
 	private Customer customer;
 
 	public Account() {
@@ -33,7 +30,7 @@ public class Account {
 	 * @param creditLimit
 	 * @param customer
 	 */
-	public Account(long number, String name, Currencies currency, double debit,
+	public Account(Long number, String name, Currencies currency, double debit,
 			double creditLimit, Customer customer) {
 
 		this.number = number;
@@ -125,18 +122,11 @@ public class Account {
 		this.customer = customer;
 	}
 
-	public long getNumber() {
+	public Long getNumber() {
 		return number;
 	}
 
-	public void setNumber(long number) {
+	public void setNumber(Long number) {
 		this.number = number;
 	}
-
-	/*
-	 * public long getCustomerIpn() { return customerIpn; }
-	 * 
-	 * public void setCustomerIpn(long customerIpn) { this.customerIpn =
-	 * customerIpn; }
-	 */
 }
