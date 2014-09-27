@@ -17,8 +17,14 @@ public class Settings {
 	private String dbname;
 	private String inputXml;
 	private String outputXml;
-	private String inputTxt;
-	private String outputTxt;
+	private String writeSqlTableCusts;
+	private String writeSqlTableAccs;
+	private String readSqlTableCusts;
+	private String readSqlTableAccs;
+	private String writeTxtCusts;
+	private String writeTxtAccs;
+	private String readTxtCusts;
+	private String readTxtAccs;
 
 	public Settings() {
 		Properties prop = new Properties();
@@ -35,8 +41,16 @@ public class Settings {
 			dbname = prop.getProperty("dbname");
 			inputXml = prop.getProperty("inputXml");
 			outputXml = prop.getProperty("outputXml");
-			inputTxt = prop.getProperty("inputTxt");
-			outputTxt = prop.getProperty("outputTxt");
+			writeSqlTableCusts = prop.getProperty("writeSqlTableCusts");
+			writeSqlTableAccs = prop.getProperty("writeSqlTableAccs");
+			readSqlTableCusts = prop.getProperty("readSqlTableCusts");
+			readSqlTableAccs = prop.getProperty("readSqlTableAccs");
+			writeTxtCusts = prop.getProperty("writeTxtCusts");
+			writeTxtAccs = prop.getProperty("writeTxtAccs");
+			readTxtCusts = prop.getProperty("readTxtCusts");
+			readTxtAccs = prop.getProperty("readTxtAccs");
+			
+
 
 	 
 		} catch (IOException ex) {
@@ -96,17 +110,59 @@ public class Settings {
 	}
 
 	/**
-	 * @return the inputTxt
+	 * @return the writeSqlTableCusts
 	 */
-	public String getInputTxt() {
-		return inputTxt;
+	public String getWriteSqlTableCusts() {
+		return writeSqlTableCusts;
 	}
 
 	/**
-	 * @return the outputTxt
+	 * @return the writeSqlTableAccs
 	 */
-	public String getOutputTxt() {
-		return outputTxt;
+	public String getWriteSqlTableAccs() {
+		return writeSqlTableAccs;
 	}
-	
+
+	/**
+	 * @return the readSqlTableCusts
+	 */
+	public String getReadSqlTableCusts() {
+		return readSqlTableCusts;
+	}
+
+	/**
+	 * @return the readSqlTableAccs
+	 */
+	public String getReadSqlTableAccs() {
+		return readSqlTableAccs;
+	}
+
+	/**
+	 * @return the writeTxtCusts
+	 */
+	public String getWriteTxtCusts() {
+		return writeTxtCusts;
+	}
+
+	/**
+	 * @return the writeTxtAccs
+	 */
+	public String getWriteTxtAccs() {
+		return writeTxtAccs;
+	}
+
+	/**
+	 * @return the readTxtCusts
+	 */
+	public String getReadTxtCusts() {
+		return readTxtCusts;
+	}
+
+	/**
+	 * @return the readTxtAccs
+	 */
+	public String getReadTxtAccs() {
+		return readTxtAccs;
+	}
+
 }

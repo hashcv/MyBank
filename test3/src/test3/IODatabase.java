@@ -11,9 +11,7 @@ import java.util.List;
  *
  */
 public class IODatabase implements InputOutput {
-	private static Storage storage = Storage.getInstance();
-	private static List<Customer> custs = storage.getCusts();
-	private static List<Account> accs = storage.getAccs();
+	Settings settings = new Settings();
 	private Statement st;
 
 	/*
@@ -23,11 +21,11 @@ public class IODatabase implements InputOutput {
 	 */
 	public void read() throws IOException {
 		MysqlUtil mysql = new MysqlUtil();
-		ResultSet rs = mysql.queryRs("select * from customers");
+		ResultSet rs = mysql.queryRs("select * from "+settings.getReadSqlTableCusts());
 
 		try {
 			while (rs.next()) {
-				custs.add(new Customer(rs.getString("firstName"), rs
+				Storage.getCusts().add(new Customer(rs.getString("firstName"), rs
 						.getString("lastName"), rs.getLong("ipn"), rs
 						.getString("address"), rs.getString("phone"), rs
 						.getString("email")));
@@ -38,10 +36,10 @@ public class IODatabase implements InputOutput {
 			e.printStackTrace();
 		}
 
-		rs = mysql.queryRs("select * from accounts");
+		rs = mysql.queryRs("select * from "+settings.getReadSqlTableAccs());
 		try {
 			while (rs.next()) {
-				accs.add(new Account(rs.getLong("number"),
+				Storage.getAccs().add(new Account(rs.getLong("number"),
 						rs.getString("name"), Currencies.valueOf(rs
 								.getString("currency")), rs.getDouble("debit"),
 						rs.getDouble("creditLimit"), Storage.findCustomer(rs
@@ -62,11 +60,13 @@ public class IODatabase implements InputOutput {
 	 */
 	public void write() throws IOException {
 		MysqlUtil mysql = new MysqlUtil();
+		mysql.queryNoRs("truncate table "+settings.getWriteSqlTableCusts());
+		mysql.queryNoRs("truncate table "+settings.getWriteSqlTableAccs());
 
-		for (Customer cust : custs) {
+		for (Customer cust : Storage.getCusts()) {
 			StringBuilder sb = new StringBuilder();
 			sb.append("INSERT INTO ");
-			sb.append("customers1");
+			sb.append(settings.getWriteSqlTableCusts());
 			sb.append(" (firstName, lastName, ipn, address, phone, email");
 			sb.append(") VALUES ('");
 			sb.append(cust.getFirstName());
@@ -84,10 +84,10 @@ public class IODatabase implements InputOutput {
 			mysql.queryNoRs(sb.toString());
 		}
 
-		for (Account acc : accs) {
+		for (Account acc : Storage.getAccs()) {
 			StringBuilder sb = new StringBuilder();
 			sb.append("INSERT INTO ");
-			sb.append("accounts1");
+			sb.append(settings.getWriteSqlTableAccs());
 			sb.append(" (number, name, currency, debit, creditLimit, ipn");
 			sb.append(") VALUES ('");
 			sb.append(acc.getNumber());

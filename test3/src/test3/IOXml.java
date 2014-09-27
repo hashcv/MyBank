@@ -16,10 +16,6 @@ import javax.xml.bind.Unmarshaller;
  *
  */
 public class IOXml  implements InputOutput {
-	private static Storage storage = Storage.getInstance();
-	
-	private static List<Customer> custs = storage.getCusts();
-	private static List<Account> accs = storage.getAccs();
 	private static Settings settings = new Settings();
 	//private File fileOutputXML = new File(this.getClass().getClassLoader().getResource("\\").getFile()+"..\\..\\"+settings.getOutputXml());
 	//private File fileInputXML = new File(this.getClass().getClassLoader().getResource("\\").getFile()+"..\\..\\"+settings.getInputXml());
@@ -62,8 +58,9 @@ public class IOXml  implements InputOutput {
 	public void write() throws IOException {
 		
 		try {
-			File fileOutputXML = new File(this.getClass().getClassLoader().getResource("\\").getFile()+"..\\..\\"+settings.getOutputXml());
-			marshalIt(storage, fileOutputXML);
+			//File fileOutputXML = new File(this.getClass().getClassLoader().getResource("\\").getFile()+"..\\..\\"+settings.getOutputXml());
+			File fileOutputXML = new File(settings.getOutputXml());
+			marshalIt(Storage.getInstance(), fileOutputXML);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}

@@ -15,10 +15,7 @@ import sun.misc.Resource;
  *
  */
 public class IOTxt implements InputOutput {
-	private static Storage storage = Storage.getInstance();
-	private static List<Customer> custs = storage.getCusts();
-	private static List<Account> accs = storage.getAccs();
-
+	private static Settings settings = new Settings();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -28,21 +25,21 @@ public class IOTxt implements InputOutput {
 
 		File dest1 = new File(this.getClass().getClassLoader()
 				.getResource("\\").getFile()
-				+ "..\\..\\customers.txt");
+				+ "..\\..\\"+settings.getReadTxtCusts());
 
 		BufferedReader custReader = new BufferedReader(new FileReader(dest1));
 		String str;
 		while ((str = custReader.readLine()) != null) {
-			custs.add(Customer.parseCust(str));
+			Storage.getCusts().add(Customer.parseCust(str));
 		}
 
 		File dest2 = new File(this.getClass().getClassLoader()
 				.getResource("\\").getFile()
-				+ "..\\..\\accounts.txt");
+				+ "..\\..\\"+settings.getReadTxtAccs());
 		BufferedReader accReader = new BufferedReader(new FileReader(dest2));
 
 		while ((str = accReader.readLine()) != null) {
-			accs.add(Account.parseAcc(str));
+			Storage.getAccs().add(Account.parseAcc(str));
 		}
 
 		custReader.close();
@@ -56,14 +53,14 @@ public class IOTxt implements InputOutput {
 	 * @see com.valentyn_tymku.bank.InputOutput#write()
 	 */
 	public void write() throws IOException {
-		BufferedWriter cw = new BufferedWriter(new FileWriter("customersW.txt"));
-		BufferedWriter ca = new BufferedWriter(new FileWriter("accountsW.txt"));
-		for (Customer cust : custs) {
+		BufferedWriter cw = new BufferedWriter(new FileWriter(settings.getWriteTxtCusts()));
+		BufferedWriter ca = new BufferedWriter(new FileWriter(settings.getWriteTxtAccs()));
+		for (Customer cust : Storage.getCusts()) {
 			cw.write(cust.toString());
 			cw.newLine();
 		}
 
-		for (Account acc : accs) {
+		for (Account acc : Storage.getAccs()) {
 			ca.write(acc.toString());
 			cw.newLine();
 		}
