@@ -39,12 +39,12 @@ public class Validate {
 	public static boolean isValidPhone(String phone) {
 		if (phone.matches("^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"))
 			return true;
-		else {
-			if (phone.length()>0)return true;
+		else if (phone.length() > 0)
+				return true;
 			System.out.println("Phone is invalid!");
 			return false;
 		
-		}
+		
 	}
 
 	/**
